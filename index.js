@@ -3,16 +3,17 @@ const path = require('path');
 const dotenv = require('dotenv');
 
 // .env 파일 로드 (명시적 경로 지정)
+// Heroku와 같은 프로덕션 환경에서는 환경변수를 직접 설정하므로 .env 파일이 없어도 됨
 const envPath = path.resolve(__dirname, '.env');
 const envResult = dotenv.config({ 
   path: envPath,
   encoding: 'utf8'
 });
 
-// dotenv 로딩 확인
-if (envResult.error) {
-  console.error('❌ .env 파일 로딩 실패:', envResult.error.message);
-  process.exit(1);
+// dotenv 로딩 확인 (에러가 있어도 계속 진행 - 프로덕션 환경에서는 환경변수를 직접 설정)
+if (envResult.error && envResult.error.code !== 'ENOENT') {
+  // .env 파일이 없는 경우(ENOENT)는 무시, 다른 에러만 경고
+  console.warn('⚠️  .env 파일 로딩 경고:', envResult.error.message);
 }
 
 const express = require('express');
