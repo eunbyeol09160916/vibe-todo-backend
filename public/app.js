@@ -1,5 +1,5 @@
-// API 기본 URL
-const API_URL = 'http://localhost:5174/api/todos';
+// API 기본 URL - 같은 서버에서 서빙되므로 상대 경로 사용
+const API_URL = '/api/todos';
 
 // DOM 요소
 const todoForm = document.getElementById('todoForm');
