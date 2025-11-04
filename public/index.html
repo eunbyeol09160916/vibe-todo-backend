@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO 앱</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 TODO 앱</h1>
+            <p class="subtitle">할일을 관리하세요</p>
+        </header>
+
+        <div class="todo-form">
+            <h2>새 할일 추가</h2>
+            <form id="todoForm">
+                <div class="form-group">
+                    <label for="title">제목 <span class="required">*</span></label>
+                    <input type="text" id="title" name="title" required placeholder="할일 제목을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="description">설명</label>
+                    <textarea id="description" name="description" rows="3" placeholder="할일 설명을 입력하세요 (선택사항)"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">할일 추가</button>
+            </form>
+        </div>
+
+        <div class="todo-list-section">
+            <h2>할일 목록</h2>
+            <div id="loading" class="loading" style="display: none;">로딩 중...</div>
+            <div id="todoList" class="todo-list">
+                <!-- 할일 목록이 여기에 동적으로 추가됩니다 -->
+            </div>
+            <div id="emptyMessage" class="empty-message" style="display: none;">
+                할일이 없습니다. 새로운 할일을 추가해보세요!
+            </div>
+        </div>
+    </div>
+
+    <!-- 수정 모달 -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>할일 수정</h2>
+            <form id="editForm">
+                <input type="hidden" id="editId">
+                <div class="form-group">
+                    <label for="editTitle">제목 <span class="required">*</span></label>
+                    <input type="text" id="editTitle" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="editDescription">설명</label>
+                    <textarea id="editDescription" name="description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="editCompleted">
+                        완료
+                    </label>
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="btn btn-primary">수정</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">취소</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
